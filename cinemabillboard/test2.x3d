@@ -1,0 +1,125 @@
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D profile='Immersive' >
+<head>
+ <meta name='Vizthumbnail' content='Thumb_test1_x3d9619631561664314.jpg'/>
+ <meta name='ExportTime' content='15:38:34'/>
+ <meta name='ExportDate' content='6/27/2019'/>
+ <meta name='VivatyStudioVersion' content='738'/>
+ <meta name='VivatyStudioSource' content='test1.fxw'/>
+</head>
+<Scene>
+<WorldInfo
+ title='test1'
+ info='"This Web3D Content was created with Vivaty Studio, a Web3D authoring tool"
+ "www.mediamachines.com"'/>
+<ProximitySensor DEF='HereIAm' size='100 100 100'/> 
+<TimeSensor DEF='time1' cycleInterval='2'/>
+ <group>
+<Transform id='billboardpos' DEF='dad_Group2'
+ translation='0 0 -2'>
+ <Billboard DEF='Group2'
+  containerField='children'
+  axisOfRotation='0 0 0'>
+  <Transform DEF='dad_Group1'
+   containerField='children'
+   translation='0 0 -.5'>
+   <Shape DEF='IndexedFaceSet7'
+    containerField='children'>
+    <Appearance
+     containerField='appearance'>
+     <ImageTexture
+	  DEF='imageName'
+      containerField='texture'
+      url='imgs/0/88.png'/>
+     <Material DEF='Red'
+      containerField='material'
+      ambientIntensity='.2'
+      shininess='.2'
+      diffuseColor='1 0 0'/>
+    </Appearance>
+    <IndexedFaceSet DEF='GeoIndexedFaceSet7'
+     containerField='geometry'
+     creaseAngle='.5236'
+     coordIndex='
+       0 1 2 -1
+       0 2 3 -1'
+     texCoordIndex='
+       0 1 2 -1
+       0 2 3 -1'>
+     <Coordinate DEF='IndexedFaceSet7_Coord'
+      containerField='coord'
+      point='
+       -.5 .5 .5
+       -.5 -.5 .5
+       .5 -.5 .5
+       .5 .5 .5'/>
+     <TextureCoordinate
+      containerField='texCoord'
+      point='
+       0 1
+       0 0
+       1 0
+       1 1'/>
+    </IndexedFaceSet>
+   </Shape>
+  </Transform>
+ </Billboard>
+</Transform>
+</group>
+
+<!-- ROUTE information for HUD node:  [from HereIAm.orientation_changed to rotation ] [from HereIAm.position_changed to translation ] -->
+<Transform DEF='HUD'>
+<Transform DEF='PushBack' translation='-.8 1. -3'>
+<Shape>
+<Appearance>
+<Material diffuseColor='1 1 0'/>
+</Appearance> 
+<Box size='1.5 .4 .1'/>
+</Shape> 
+<Transform DEF='HudContents' translation='-.7 .3 .1'>
+<Transform DEF='TopText' translation='0 -.2 0'>
+<Shape>
+<Appearance DEF='Text_app'>
+<Material diffuseColor='0 0 0'/>
+</Appearance> 
+<!-- ROUTE information for TopTextLine node:  [from CnvText.positionText to string ] -->
+<Text DEF='TopTextLine' string='"Position 0.00 0.00 10.00"'>
+<FontStyle DEF='TextStyle' family='"SANS" "SERIF"' justify='"BEGIN" "BEGIN"' size='0.1'/>
+</Text>
+</Shape>
+</Transform> 
+<Transform DEF='BottomText' translation='0 -.4 0'>
+<Shape>
+<Appearance USE='Text_app'/> 
+<!-- ROUTE information for BottomTextLine node:  [from CnvText.orientationText to string ] -->
+<Text DEF='BottomTextLine' string='"Orientation: 0.000 1.000 0.000 0.00"'>
+<FontStyle USE='TextStyle'/>
+</Text>
+</Shape>
+</Transform>
+</Transform>
+</Transform>
+</Transform> 
+
+<!-- ROUTE information for testscript node:  [from HereIAm.position_changed to randomize ]-->
+<Script DEF='testscript' url=' "proxsensorScript.js" "http://metagrid2.sv.vt.edu/~joo918/proxsensorScript.js" '>
+	<field name='alertme' type='SFVec3f' accessType='inputOnly'/>
+	<field name='randomize' type='SFVec3f' accessType='inputOnly'/>
+	<filed name='fractionHandler' type='
+	<field name='pt' type='MFString' accessType='outputOnly'/>
+	<field name='position' type='SFVec3f' accessType='inputOnly'/> 
+	<field name='orientation' type='SFRotation' accessType='inputOnly'/> 
+	<field name='positionText' type='MFString' accessType='outputOnly'/> 
+	<field name='orientationText' type='MFString' accessType='outputOnly'/>
+</Script>
+<ROUTE fromNode='HereIAm' fromField='orientation_changed' toNode='HUD' toField='rotation'/> 
+<ROUTE fromNode='HereIAm' fromField='position_changed' toNode='HUD' toField='translation'/> 
+<ROUTE fromNode='HereIAm' fromField='position_changed' toNode='testscript' toField='position'/> 
+<ROUTE fromNode='HereIAm' fromField='orientation_changed' toNode='testscript' toField='orientation'/> 
+<ROUTE fromNode='testscript' fromField='positionText' toNode='TopTextLine' toField='string'/> 
+<ROUTE fromNode='HereIAm' fromField='position_changed' toNode='testscript' toField='randomize'/> 
+<ROUTE fromNode='testscript' fromField='pt' toNode='imageName' toField='url'/>
+<ROUTE fromNode='testscript' fromField='orientationText' toNode='BottomTextLine' toField='string'/>
+
+</Scene>
+</X3D>

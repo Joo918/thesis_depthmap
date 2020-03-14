@@ -1,0 +1,62 @@
+<X3D class="x3domContext" id='myX3DWorld' style="width:100%;height:100%">
+	<Scene>
+		<group>
+			<transform DEF="objTrans" translation='0 0 0' rotation='0 1 0 0' scale="2 2 2"> 
+				<shape>
+					<appearance>
+						<MultiTexture>
+							<ImageTexture DEF="img" repeatS="false" repeatT="false" loop="true" url="dmap_box/box1_02/phi=0_theta=0_col.png"></ImageTexture>
+							<ImageTexture DEF="depthimg" repeatS="false" repeatT="false" loop="true" url="dmap_box/box1_02/phi=0_theta=0_depth.png"></ImageTexture>
+						</MultiTexture>
+						<composedshader>
+							<field name='diffuseMap' type='SFInt32' value='0'></field>
+							<field name='heatMap' type='SFInt32' value='1'></field>
+							<shaderpart type='VERTEX'>
+								attribute vec3 position;
+								attribute vec2 texcoord;
+
+								uniform mat4 modelViewProjectionMatrix;
+								uniform mat4 normalMatrix;
+								uniform sampler2D heatMap;
+								varying vec2 fragTexCoord;
+								varying vec3 fragNormal;
+
+								void main()
+								{
+									fragTexCoord = texcoord;
+								
+									vec3 pos = position;
+									
+									vec3 heatColor = texture2D(heatMap, vec2(1.0 - fragTexCoord.x, fragTexCoord.y)).rgb;
+									float displacement = (heatColor.r + heatColor.g + heatColor.b) / 3.0;
+								
+									pos.z += displacement * 1.02;
+									
+									gl_Position = modelViewProjectionMatrix * vec4(pos, 1.0);
+								}
+							</shaderpart>
+							<shaderpart def="frag" type='FRAGMENT'>
+								#ifdef GL_ES
+								precision highp float;
+								#endif
+
+								uniform sampler2D diffuseMap;
+								varying vec2 fragTexCoord;
+								
+								varying float displacement;
+
+
+								void main()
+								{
+									vec4 diffuse = texture2D(diffuseMap, vec2(1.0 - fragTexCoord.x, fragTexCoord.y)).rgba;
+									gl_FragColor = diffuse;
+								}
+							</shaderpart>
+						</composedshader>
+					</appearance>
+					<plane size="1 1" subdivision="512 512"></plane>
+				</shape>
+			</transform>
+		</group>
+	</Scene>
+</X3D>

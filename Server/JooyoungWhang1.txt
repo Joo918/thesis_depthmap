@@ -1,0 +1,3 @@
+#JooyoungWhang1
+#time,answer,correct,maxMoveL,maxMoveR
+7777,1,1,1.4873206883652652,1.769303421103655

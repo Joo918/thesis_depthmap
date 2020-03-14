@@ -1,0 +1,11 @@
+<ColorMaps>
+<ColorMap name="Depth" space="RGB">
+<Point x="0" o="1" r="1.0" g="1.0" b="1.0"/>
+<Point x="8871.888" o="1" r="0.0" g="0.0" b="0.0"/>
+</ColorMap>
+<ColorMap name="Heat" space="RGB">
+<Point x="0" o="1" r="1.0" g="1.0" b="1.0"/>
+<Point x="1" o="1" r="0.81568627450980391" g="0.81568627450980391" b="0.81568627450980391"/>
+<Point x="2" o="1" r="0.13333333333333333" g="0.17647058823529413" b="0.35686274509803922"/>
+</ColorMap>
+</ColorMaps>

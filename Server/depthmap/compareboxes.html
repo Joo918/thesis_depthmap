@@ -1,0 +1,159 @@
+<!-- test -->
+<html style="padding:0;margin:0;border:0;">
+        <head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+			<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+			<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+            <title>turning billboard + depth map</title> 			
+			<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+			<script type="text/javascript" src="./changedX3dom/x3dom-full.js"></script>
+            <link rel='stylesheet' type='text/css' href='./changedX3dom/x3dom.css'/>
+			<script type='text/javascript' src='./VRButton.js'></script>
+			<script type='text/javascript' src='./controller_2_27.js'></script>
+			
+			<style>
+				.labelOverlay
+				{
+					position:fixed;
+					width: 400px;
+					padding:8px;
+					margin:16px;
+					background:#888888;
+					background: linear-gradient(#BBBBBB, #888888); 
+					border-radius:8px;
+					border:2px solid #EEEEEE;            
+					box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);            
+					font-weight:bold;
+					color:white;            
+					z-index:20000;
+				}        
+				.x3domContext
+				{
+					border: none;
+					background:#888888;
+					background: linear-gradient(#777777, #333333); 
+				}
+				.paramSlider
+				{
+					margin: 0 8px;
+				}
+			</style>
+        </head> 
+        <body style='width:100%; height:100%; border:0; margin:0;  padding:0;'>
+			<X3D id="x3dcomp" style='width:100%; height:100%; border:0; margin:0;  padding:0;'> 
+				<scene>
+					<Viewpoint id="mainview" enterFrame="go()" position="0 2 4" orientation="0 0 0 -1"  zNear="0.01" zFar="10000"></Viewpoint>
+					
+					<transform id="entireElement" translation='0 0 0'>
+					<transform class='VRButton' onClick='selectCube(0)' bname ='1' translation='-2 -1.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<ImageTexture url="sizestexture/1.png"></ImageTexture>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='selectCube(1)' bname ='2' translation='-1 -1.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<ImageTexture url="sizestexture/1_05.png"></ImageTexture>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='selectCube(2)' bname ='3' translation='0 -1.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<ImageTexture url="sizestexture/1_075.png"></ImageTexture>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='selectCube(3)' bname ='4' translation='1 -1.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<ImageTexture url="sizestexture/1_1.png"></ImageTexture>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='selectCube(4)' bname ='5' translation='2 -1.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<ImageTexture url="sizestexture/1_125.png"></ImageTexture>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='turnOnStereo()' bname ='stereoOn' translation='-1 -2.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<Material diffuseColor='0 1 0'></Material>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform class='VRButton' onClick='turnOffStereo()' bname ='stereoOff' translation='1 -2.5 0' scale='0.4 0.4 0.4'>
+						<shape>
+							<appearance>
+								<Material diffuseColor='1 0 0'></Material>
+							</appearance>
+							<box></box>
+						</shape>
+					</transform>
+					
+					<transform DEF="b1_default" translation='-1.5 0 -2'>
+						<Inline id="b1default" mapDEFToID="true" nameSpaceName="b1default" boxname="box1" onload="addLoaded(0)" url="ibrobjs/ibr1.x3d">
+						</Inline>
+					</transform>
+					
+					<Switch whichChoice="0" id="switcher">
+						<transform DEF="b1" translation='1.5 0 -2'>
+							<Inline id="b1" mapDEFToID="true" nameSpaceName="b1" boxname="box1" onload="addLoaded(1)" url="ibrobjs/ibr1.x3d">
+							</Inline>
+						</transform>
+						
+						<transform DEF="b105" translation='1.5 0 -2'>
+							<Inline id="b105" mapDEFToID="true" nameSpaceName="b105" boxname="box1_05" onload="addLoaded(2)" url="ibrobjs/ibr1_05.x3d">
+							</Inline>
+						</transform>
+						
+						<transform DEF="b1075" translation='1.5 0 -2'>
+							<Inline id="b1075" mapDEFToID="true" nameSpaceName="b1075" boxname="box1_075" onload="addLoaded(3)" url="ibrobjs/ibr1_075.x3d">
+							</Inline>
+						</transform>
+						
+						<transform DEF="b11" translation='1.5 0 -2'>
+							<Inline id="b11" mapDEFToID="true" nameSpaceName="b11" boxname="box1_1" onload="addLoaded(4)" url="ibrobjs/ibr1_1.x3d">
+							</Inline>
+						</transform>
+						
+						<transform DEF="b1125" translation='1.5 0 -2'>
+							<Inline id="b1125" mapDEFToID="true" nameSpaceName="b1125" boxname="box1_125" onload="addLoaded(5)" url="ibrobjs/ibr1_125.x3d">
+							</Inline>
+						</transform>
+					</Switch>
+					
+					<transform translation='0 -4 0'>
+						<shape>
+							<appearance>
+							  <material ambientIntensity='0.0933' diffuseColor='0.32 0.54 0.26' shininess='0.51' specularColor='0.46 0.46 0.46'></material>
+							</appearance>
+							<text id="logInfo" string='log window' solid='false'>
+								<fontstyle family="'Times' 'Orbitron'" size="0.8"></fontstyle>
+							</text>
+						</shape>
+					</transform>
+					</transform>
+				<Background skyColor='0.1 0.1 0.1'>
+				</Background>
+				</scene>
+			</X3D> 
+        </body> 
+    </html> 

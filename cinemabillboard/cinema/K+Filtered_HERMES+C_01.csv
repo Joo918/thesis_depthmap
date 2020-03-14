@@ -1,0 +1,2 @@
+row,RunNumber,BurstNumber,EventNumber,Polarization(beam),Polarization(target),Q^2,x,y,Phi_s,epsilon,Charge,Pi+/-Weight,Pi0Weight,K+/-,ProtonWeight,Z(Pi+/-),Z(Pi0),Z(K+/-),Z(ProtonWeight),P_hperp,Phi_h,(q/zp)^2,zp2,A,B,C
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

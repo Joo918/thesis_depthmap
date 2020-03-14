@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
+  <head>
+    <meta content='default_collision.x3d' name='title'/>
+    <meta content='default-movie.mpg' name='MovingImage'/>
+    <meta content='http://www.nist.gov/vrml.html' name='reference'/>
+    <meta content='http://www.itl.nist.gov/div897/ctg/vrml/vrml.html' name='reference'/>
+    <meta content='http://www.itl.nist.gov/div897/ctg/vrml/members.html' name='creator'/>
+    <meta content='This file was provided by the National Institute of Standards and Technology, and is part of the X3D Conformance Test Suite, available at http://www.nist.gov/vrml.html The information contained within this file is provided for use in establishing conformance to the ISO VRML97 Specification. Conformance to this test does not imply recommendation or endorsement by the National Institute of Standards and Technology. This software can be redistributed and/or modified freely provided that any derivative works bear some notice that they are derived from it, and any modified versions bear some notice that they have been modified.' name='disclaimer'/>
+    <meta content='Correct definition and compliance of this conformance scene is maintained by the X3D Working Group, https://www.web3d.org/working-groups/x3d' name='info'/>
+    <meta content='Michael Kass NIST, Don Brutzman NPS' name='translator'/>
+    <meta content='21 January 2001' name='translated'/>
+    <meta content='20 October 2019' name='modified'/>
+    <meta content='Test default Collision properties. A default Collision node is the parent of a Box geometry. To test collision support, the BOX geometry collides with the viewer avatar. The Box should turn red upon collision, showing that collision detection between a moving geometry, and a stationary avatar is supported. In addition, the viewer should be able to navigate toward the Box geometry in a "walking" type of motion, and collide with the Box geometry. This should also cause the Box to turn red, indicating that collision detection between a stationary geometry and a moving (navigating) avatar is supported.' name='description'/>
+    <meta content='https://www.web3d.org/x3d/content/examples/ConformanceNist/GroupingNodes/Collision/default_collision.x3d' name='identifier'/>
+    <meta content='Vrml97ToX3dNist, http://ovrt.nist.gov/v2_x3d.html' name='generator'/>
+    <meta content='X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit' name='generator'/>
+    <meta content='../../license.html' name='license'/>
+  </head>
+  <Scene>
+    <WorldInfo title='default_collision.x3d'/>
+    <Viewpoint DEF='VIEW1' description='Front View' position='0 0 15'/>
+    <Viewpoint DEF='VIEW2' description='At Origin' position='0 0 0'/>
+    <TimeSensor DEF='TIME0' cycleInterval='2'/>
+    <ColorInterpolator DEF='COLOR_INTERP' key='0 0.5 1' keyValue='0.8 0.8 0.8 1 0 0 0.8 0.8 0.8'/>
+    <TimeSensor DEF='TIME1' loop='true'/>
+    <TimeSensor DEF='TIME2' cycleInterval='4'/>
+    <PositionInterpolator DEF='POSITION_INTERP' key='0 0.5 0.75 1' keyValue='0 0 0 0 0 0 0 0 15 0 0 0'/>
+    <Collision DEF='COLLIDE1'>
+      <Transform DEF='TRANS1'>
+        <Shape>
+          <Appearance>
+            <Material DEF='BOX1'/>
+          </Appearance>
+          <Box size='3 3 3'/>
+        </Shape>
+      </Transform>
+    </Collision>
+    <ROUTE fromField='collideTime' fromNode='COLLIDE1' toField='startTime' toNode='TIME0'/>
+    <ROUTE fromField='fraction_changed' fromNode='TIME0' toField='set_fraction' toNode='COLOR_INTERP'/>
+    <ROUTE fromField='value_changed' fromNode='COLOR_INTERP' toField='set_diffuseColor' toNode='BOX1'/>
+    <ROUTE fromField='cycleTime' fromNode='TIME1' toField='startTime' toNode='TIME2'/>
+    <ROUTE fromField='isActive' fromNode='TIME2' toField='enabled' toNode='TIME1'/>
+    <ROUTE fromField='isActive' fromNode='TIME2' toField='enabled' toNode='TIME2'/>
+    <ROUTE fromField='fraction_changed' fromNode='TIME2' toField='set_fraction' toNode='POSITION_INTERP'/>
+    <ROUTE fromField='value_changed' fromNode='POSITION_INTERP' toField='set_translation' toNode='TRANS1'/>
+  </Scene>
+</X3D>
