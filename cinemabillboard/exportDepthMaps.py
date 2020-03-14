@@ -9,7 +9,7 @@ from string import Template
 #User parameters
 
 #number of divisions in theta angle from -180 to 180 degrees
-thetaSteps = 7 #UNUSED ATM. DIRECTLY CHANGE 38
+thetaSteps = 19 #UNUSED ATM. DIRECTLY CHANGE 38
 #number of divisions in phi angle from -90 to 90 degrees
 phiSteps = 1 #UNUSED ATM. DIRECTLY CHANGE 39
 #which columns to put for x,y,z axis
@@ -17,9 +17,9 @@ xyz = ['x','y','z']
 #which column to color by (for the actual image, not the depth map)
 colorby = ['col']
 
-csvDirectory = 'D:/thesis/Thesis/Thesis/spheres/sphere1_125.csv'
+csvDirectory = 'D:/thesis/Thesis/Thesis/boxes/box1_125.csv'
 colormapDirectory = 'D:/thesis/Thesis/Thesis/cinemabillboard/HeatColormap.xml'
-exportDirectory = 'D:/thesis/Thesis/Thesis/cinemabillboard/dmap_sphere/sphere1_125/'
+exportDirectory = 'D:/thesis/Thesis/Thesis/cinemabillboard/dmap_box/box1_125/'
 maxMinFile = 'D:/thesis/Thesis/Thesis/cinemabillboard/maxmin.txt'
 
 #########################################################################
@@ -35,7 +35,7 @@ thetaSize = 360 / thetaSteps
 phiSize = 180 / phiSteps
 
 #get the camera angles to take images from
-thetas = np.array([-45,-30,-15,0,15,30,45])#np.arange(-180, 180, thetaSize)
+thetas = np.array([-45,-40,-35,-30,-25,-10,-15,-10,-5,0,5,10,15,20,25,30,35,40,45])#np.arange(-180, 180, thetaSize)
 phis = np.array([0])#np.arange(-90, 90, phiSize)
 
 print('thetas: ', thetas)
